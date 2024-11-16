@@ -1,0 +1,16 @@
+body {
+  margin-top: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  overflow: hidden;
+}
+
+@font-face {
+  font-family: toro;
+  src: url(../../MUSIC/fonts/leaguespartan-bold.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: sanchez;
+  src: url(../../MUSIC/fonts/Sanchezregular.otf);
+}
