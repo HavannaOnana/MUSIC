@@ -14,3 +14,53 @@ body {
   font-family: sanchez;
   src: url(../../MUSIC/fonts/Sanchezregular.otf);
 }
+
+@font-face {
+    font-family: without;
+    src: url(../../MUSIC/fonts/WithoutAltSans-Black.ttf)format("truetype");
+}
+
+.main-body{
+    margin-top: 4%;
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+}
+
+
+
+.main-body .image img{
+    width: 100%;
+}
+
+.main-body-text{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.main-body-text .about{
+    font-family: without;
+    font-size: 2em;
+}
+
+.main-body-text .about-text{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.main-body-text .navbar{
+  display: flex;
+  flex-direction: row;
+  border: 1px solid black;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.navbar a{
+    margin-left: 0.2%;
+    text-decoration: none;
+    color: black;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    border: 1px black solid;
+    width: 100%;
+}
