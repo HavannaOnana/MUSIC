@@ -2,7 +2,6 @@ body {
   margin-top: 0;
   padding: 0;
   background-color: #f4f4f4;
-  overflow: hidden;
 }
 
 @font-face {
@@ -19,6 +18,8 @@ body {
     font-family: without;
     src: url(../../MUSIC/fonts/WithoutAltSans-Black.ttf)format("truetype");
 }
+
+
 
 .navbar-upper{
     display: flex;
@@ -58,41 +59,74 @@ body {
 
 }
 
-.main-bodys{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
+.addsong{
     width: 100vw;
+    text-align: center;
     margin-top: 5%;
 }
 
-.main-bodys h1{
-    font-family: without;
-    font-size: 2em;
+.addsong h1{
+    font-family: Without;
 }
 
-.main-bodys a{
-    text-decoration: none;
+.addsong form{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.addsong input{
+    width: 20vw;
+    height: 3vh;
+}
+
+.addsong button{
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     background-color: black;
-    padding: 8px;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    border: none;
     color: wheat;
-    border-radius: 5px;
-    transition: all 1s ease-in-out;
 }
 
-.main-bodys a:hover{
-    background-color: white;
-    color: black;
-    border: 1px solid black;
+.showsongs{
+    margin-top: 5%;
+    width: 50vw;
+    display:flex ;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 27%;
 }
 
-.main-bodys p{
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+.showsongs h1{
+   width: 100vw;
+   text-align: center;
+   font-family: without
 }
 
-.main-bodys img{
-    width: 40%;
-    margin-top: 6%;
+
+
+
+table {
+    width: 50vw;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+
+th {
+    color: #f2f2f2;
+    font-weight: bold;
+    text-align: left;
+    font-family: toro;
+    background-color: black;
+}
+
+tr:hover {
+    background-color: #f9f9f9;
 }
