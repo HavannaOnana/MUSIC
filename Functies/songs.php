@@ -159,7 +159,7 @@ class Songs{
 
         <div class="navbar">
             <a href="../Functies/songs.php">Songs</a>
-            <a href="#">Artist</a>
+            <a href="../Functies/artist.php">Artist</a>
         </div>
         
         <div class="logout">
