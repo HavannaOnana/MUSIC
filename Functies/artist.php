@@ -2,16 +2,47 @@
 
 require_once "Database.php";
 
+
+
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $name = htmlspecialchars($_POST["name"]);
+
+    if ($_POST['action'] === 'update'){
+    $ArtistId = htmlspecialchars($_POST['ArtistID']);
+    $name = htmlspecialchars($_POST['name']);
     $nickname = htmlspecialchars($_POST['nickname']);
     $year = htmlspecialchars($_POST['year']);
-    $country = htmlspecialchars($_POST['country']);
+    $country = htmlspecialchars($_POST['country']); 
 
-    if(!empty($name) && !empty($nickname) && !empty($year) && !empty($country)){
-        $artistInsert = new Artist();
-        $artistInsert->insertArtist($name,$nickname,$year,$country);
+    if(!empty($ArtistId) && !empty($name) && !empty($nickname) && !empty($year) && !empty($country)){
+        $artistUpdate = new Artist();
+        $artistUpdate->updateArtistByID($ArtistId,$name,$nickname,$year,$country);
     }
+  } else if($_POST['action'] === 'delete'){
+      $artistID = htmlspecialchars($_POST['ArtistID']);
+      if(!empty($artistID)){
+            $artistDelete = new Artist();
+            $artistDelete->deleteArtistByID($artistID);
+        }else{
+             echo "Please fill in all fields correctly.";
+        }
+  }
+  else{
+        $name = htmlspecialchars($_POST["name"]);
+        $nickname = htmlspecialchars($_POST['nickname']);
+        $year = htmlspecialchars($_POST['year']);
+        $country = htmlspecialchars($_POST['country']);
+
+        if(!empty($name) && !empty($nickname) && !empty($year) && !empty($country)){
+            $artistInsert = new Artist();
+            $artistInsert->insertArtist($name,$nickname,$year,$country);
+    }
+  }
+
+
+
+
+
+   
 }
 
 
@@ -75,7 +106,36 @@ class Artist{
         catch(PDOException $e){
             echo "Error fetching songs: " . $e->getMessage();
         }
+    }
 
+    public function updateArtistByID($artistID,$name,$nickname,$year,$country){
+       $sqlQuery = "UPDATE artist SET name = :name, nickname = :nickname, year = :year, country = :country WHERE ArtistID = :ArtistID";
+       $inProcess = $this->db->pdo->prepare($sqlQuery);
+
+       $inProcess->bindParam(':ArtistID',$artistID);
+       $inProcess->bindParam(':name',$name);
+       $inProcess->bindParam(':nickname',$nickname);
+       $inProcess->bindParam(':year',$year);
+       $inProcess->bindParam(':country',$country);
+
+        if($inProcess->execute()){
+            echo "Song sucessfully updated";
+        }
+        else{
+            echo "Mistake by updating a song";
+        }
+    }
+
+    public function deleteArtistByID($artistID){
+        $sqlQuery = "DELETE FROM artist WHERE ArtistID= :ArtistID";
+        $inProcess = $this->db->pdo->prepare($sqlQuery);
+        $inProcess->bindParam(":ArtistID",$artistID);
+        if($inProcess->execute()){
+        echo "Song deleted";
+      }
+      else{
+         echo "Could not delete song due to error";
+      }
     }
 
 
@@ -131,18 +191,51 @@ class Artist{
                <input type="text" name="year"><br><br>
                <label for="country" name="country">Country:</label><br>
                <input type="text" name="country"><br><br>
-               <button type="submit">Add Song</button>
+               <button type="submit">Add Artist</button>
           </form>
      </div>
 
      <div class="showallartist">
-
-     <h1>Show All the Artist</h1>
-         <?php
-            $artist = new Artist();
-            $artist->showAllArtist();
-         ?>
+        <h1>Show All the Artist</h1>
+            <?php
+                $artist = new Artist();
+                $artist->showAllArtist();
+            ?>
      </div>
+
+     <div class="updateArtist">
+        <h1>Update an Artist By ID</h1>
+        <form action="artist.php" method="post">
+            <input type="hidden" name="action" value="update"> 
+            <label for="ArtistID">Artist ID:</label><br>
+            <input type="number" name="ArtistID" required><br><br>
+
+            <label for="name">New Name:</label><br>
+            <input type="text" name="name" required><br><br>
+
+            <label for="nickname">New nickname:</label><br>
+            <input type="text" name="nickname" required><br><br>
+
+            <label for="year">New Year:</label><br>
+            <input type="text" name="year" required><br><br>
+
+            <label for="country">New Country:</label><br>
+            <input type="text" name="country" required><br><br>
+
+            <button type="submit">Update Song</button>
+        </form>
+     </div>
+
+      <div class="deleteartistByID">
+       <h1>Delete an Artist by ID</h1>
+       <form action="artist.php" method="post">
+           <input type="hidden" name="action" value="delete">
+           <label for="ArtistID">Artist ID:</label><br>
+           <input type="number" name="ArtistID" required><br><br>
+
+           <button type="submit">Delete Artist</button>
+       </form>
+    </div>
 
     
     
